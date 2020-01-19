@@ -9,9 +9,9 @@ import (
 
 //Mapping mapping struct
 type Mapping struct {
-	Source string `json:"Source"`
-	Target string `json:"Target"`
-	Count  int    `json:"Count"`
+	Source string `json:"source"`
+	Target string `json:"target"`
+	Count  int    `json:"count"`
 }
 
 //NewMapping Create a new mapping
