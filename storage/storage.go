@@ -1,6 +1,8 @@
 package storage
 
 import (
+	"fmt"
+
 	"github.com/prologic/bitcask"
 )
 
@@ -13,6 +15,7 @@ type Storage struct {
 //NewStorage create new storage
 func NewStorage(directory string) *Storage {
 	db, _ := bitcask.Open("data/" + directory)
+
 	s := &Storage{
 		Directoryname: directory,
 		DB:            db,
@@ -21,8 +24,23 @@ func NewStorage(directory string) *Storage {
 	return s
 }
 
+//GetKeys - get keys
+func (s *Storage) GetKeys() (keys []string) {
+	c := s.DB.Keys()
+	var val []byte
+	var ok = true
+	for ok == true {
+		select {
+		case val, ok = <-c:
+			keys = append(keys, string(val))
+		}
+	}
+	return
+}
+
 //AddValue - add value
 func (s *Storage) AddValue(key string, pair string) {
+	fmt.Println("ADDING")
 	s.DB.Put([]byte(key), []byte(pair))
 }
 
