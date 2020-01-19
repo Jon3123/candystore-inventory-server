@@ -2,9 +2,9 @@ package models
 
 //Mapping mapping struct
 type Mapping struct {
-	Source string
-	Target string
-	Count  int
+	Source string `json:"Source"`
+	Target string `json:"Target"`
+	Count  int    `json:"Count"`
 }
 
 //NewMapping Create a new mapping
