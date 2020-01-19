@@ -31,3 +31,8 @@ func (s *Storage) GetValue(key string) (res string) {
 	value, _ := s.DB.Get([]byte(key))
 	return string(value)
 }
+
+//Close - close
+func (s *Storage) Close() {
+	s.DB.Close()
+}

@@ -3,10 +3,11 @@ package main
 import (
 	"fmt"
 
-	"github.com/Jon3123/candystore-inventory-server/storage"
+	"github.com/Jon3123/candystore-inventory-server/pkg/server"
 )
 
 func main() {
+	//utils.Init()
 	// m := models.NewMapping("Source Test", "Target Test", 12)
 	// fmt.Println(m)
 	// str, err := json.Marshal(m)
@@ -25,10 +26,8 @@ func main() {
 
 	// fmt.Println(mapping)
 
-	store := storage.NewStorage("Test")
-
-	store.AddValue("Hi2", "bye2")
-
-	fmt.Println(store.GetValue("Hi3"))
+	server := server.NewServer()
+	server.Run()
+	fmt.Println(server)
 
 }
