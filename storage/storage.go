@@ -1,8 +1,6 @@
 package storage
 
 import (
-	"fmt"
-
 	"github.com/prologic/bitcask"
 )
 
@@ -29,7 +27,7 @@ func (s *Storage) GetKeys() (keys []string) {
 	c := s.DB.Keys()
 	var val []byte
 	var ok = true
-	for ok == true {
+	for ok == true { //wait for channel to be fill
 		select {
 		case val, ok = <-c:
 			keys = append(keys, string(val))
@@ -38,9 +36,17 @@ func (s *Storage) GetKeys() (keys []string) {
 	return
 }
 
+//GetAllMappings get all mappings
+func (s *Storage) GetAllMappings() (values []string) {
+	keys := s.GetKeys()
+	for _, key := range keys {
+		values = append(values, s.GetValue(key))
+	}
+	return
+}
+
 //AddValue - add value
 func (s *Storage) AddValue(key string, pair string) {
-	fmt.Println("ADDING")
 	s.DB.Put([]byte(key), []byte(pair))
 }
 

@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/Jon3123/candystore-inventory-server/pkg/server"
 )
 
@@ -28,6 +26,5 @@ func main() {
 
 	server := server.NewServer()
 	server.Run()
-	fmt.Println(server)
 
 }

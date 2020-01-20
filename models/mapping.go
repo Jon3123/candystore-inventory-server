@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/Jon3123/candystore-inventory-server/pkg/server"
+	"github.com/Jon3123/candystore-inventory-server/pkg/scontext"
 )
 
 //Mapping mapping struct
@@ -15,7 +15,7 @@ type Mapping struct {
 }
 
 //NewMapping Create a new mapping
-func NewMapping(ctx *server.Context, source string, target string, count int) *Mapping {
+func NewMapping(ctx *scontext.Context, source string, target string, count int) *Mapping {
 	m := &Mapping{
 		Source: source,
 		Target: target,
